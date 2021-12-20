@@ -1,0 +1,210 @@
+/* 清楚超链接样式 */
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+html,
+body {
+    border: 0;
+    margin: 0;
+    /* 覆盖整个页面 */
+    height: 100%;
+    /* 页面默认字体 */
+    font-family: "微软雅黑", "幼圆", "microsoft yahei";
+    /* 溢出元素框内容会被裁剪hidden */
+    overflow: hidden;
+}
+
+#view_background {
+    /* 堆叠顺序:3 */
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    /* 固定位置 */
+    position: fixed;
+    /* 最小高度 */
+    min-height: 475px;
+    background-image: url(../Img/bg.jpg);
+    background-repeat: no-repeat;
+    /* 保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小 */
+    background-size: cover;
+}
+
+#login_left {
+    height: 292px;
+    width: 740px;
+    background-color: rgba(81, 136, 108, 0.8);
+    /* 绝对定位 */
+    position: absolute;
+    top: 26%;
+    right: 10%;
+    box-shadow: 0 0 30px rgba(81, 136, 108, 0.8);
+}
+
+#login_left_context {
+    position: absolute;
+    padding: 12px 16px;
+    color: #fff;
+}
+
+.login_context_footer {
+    color: #666;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+.login_right {
+    /* 不透明度0.9 */
+    opacity: 0.9;
+    height: 420px;
+    width: 350px;
+    min-height: 420px;
+    background-color: #fff;
+    position: absolute;
+    right: 12%;
+    top: 20%;
+    box-shadow: 0 0 30px rgba(81, 136, 108, 0.8);
+}
+
+#login_center{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+#login_view{
+    padding: 24px;
+    padding-top: 0;
+}
+
+#login_view h4{
+    font-size: 28px;
+    color: #7fb2de;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#login_view p{
+    margin: 0;
+}
+
+#login_form{
+    margin-top: 20px;
+}
+
+.login_forge{
+    margin-top: 10px;
+    margin-left: 6px;
+    display: block;
+    float: right;
+}
+
+.linput{
+    width: 90%;
+    padding: 6px 10px;
+    border-width: 1px;
+    border-color: #666;
+    border-color: rgba(0, 0, 0, .6);
+    height: 36px;
+    outline: none;
+    border-style: solid;
+    background-color: rgba(255, 255, 255, .4);
+    /* 修改风格 */
+    -webkit-appearance: textfield;
+    /* 字距 */
+    letter-spacing: normal;
+    word-spacing: normal;
+    /* 首行缩进 */
+    text-indent: 0px;
+    margin-bottom: 10px;
+}
+
+.lbutton{
+    border-color: #0067b8;
+    background-color: #0067b8;
+    color:#fff;
+    width: 100%;
+    height: 36px;
+    border-width: 1px;
+    display: inline-block;
+    min-width: 100px;
+    padding: 4px 12px 4px 12px;
+    margin-top: 4px;
+    text-align: center;
+    /* 规定段落中的文本不进行换行 */
+    white-space: nowrap;
+    overflow: hidden;
+    /* 	显示省略符号来代表被修剪的文本 */
+    text-overflow: ellipsis;
+    touch-action: manipulation;
+    animation: ActionFadeIn 1s;
+    animation-fill-mode: forwards;
+}
+
+.lbutton:hover {
+    background-color: #005ea7;
+}
+
+/* 手机适配 */
+.phone{
+    display: none;
+}
+
+@media (max-width: 840px) {
+    #mlogin_left {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+    }
+    #mlogin_right {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+    }
+    .mlogin_context_footer {
+        left: 24px;
+    }
+    .phone_not {
+        display: none;
+    }
+    .phone {
+        display: block;
+    }
+}
+
+/* 动画 */
+
+@keyframes Loading1 {
+    0% {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes Loading2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

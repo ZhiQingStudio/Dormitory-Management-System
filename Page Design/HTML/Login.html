@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证界面 | 宿舍管理系统</title>
+    <link rel="stylesheet" href="../CSS/Login_style.css">
+</head>
+<body>
+    <!-- 背景图片 -->
+    <div id="view_background" class="phone_not"></div>
+    <!-- 登录 -->
+    <div id="login_center">
+        <div id="login_left">
+            <div id="login_left_context" class="phone_not">
+                <h3>欢迎使用宿舍管理系统</h3>
+                <p>简单，快捷，让你的日常生活更加简单</p>
+                <p>感谢使用</p>
+            </div>
+            <p class="login_context_footer"><span>©2021 ZhiQingStudio. All rights reserved.</span></p>
+        </div>
+        <div class="login_right">
+            <div id="login_view">
+                <h4>登录界面</h4>
+                <p>使用您的账号登录</p>
+                <div id="login_form">
+                    <p>账号</p>
+                    <input id="login_userid" type="text" class="linput" placeholder="普通账号 | 管理用户" onkeypress="enKeyPress()">
+                    <p>密码</p>
+                    <input id="login_passwd" type="text" class="linput" placeholder="账号密码" onkeypress="enKeyPress()">
+                    <button id="login_button" class="lbutton" onclick="btnLogin()">验证</button>
+                    <a href="" class="login_forge" onclick="alert(请电话拨打88888888联系管理员更改密码)">忘记密码</a>
+                    <a href="" class="login_forge" onclick="alert(暂不提供帮助)">需要帮助</a>
+                </div>
+                <p class="login_context_footer phone"><span>©2021 ZhiQingStudio. All rights reserved.</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
