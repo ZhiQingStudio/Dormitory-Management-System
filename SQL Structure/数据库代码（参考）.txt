@@ -1,0 +1,174 @@
+﻿CREATE DATABASE 高校学生宿舍信息管理系统
+ON
+(NAME='高校学生宿舍信息管理_data', 
+FILENAME='e:\stu\高校学生宿舍信息管理_data.mdf',  
+SIZE=5MB,                         
+FILEGROWTH=1MB, 
+MAXSIZE=200MB) 
+LOG ON
+(NAME='高校学生宿舍信息管理_log',
+FILENAME='e:\stu\高校学生宿舍信息管理_log.ldf', 
+SIZE=5MB,
+FILEGROWTH=1MB,
+MAXSIZE=200MB)
+
+create table 学生基本信息表
+(
+学号 varchar(10) primary key,
+宿舍号 varchar(5) not null,
+入校时间 datetime not null,
+入住时间 datetime not null,
+所在的院系名称 char(20) not null,
+电话号码 char(10) not null,
+用户名id varchar(10) not null
+)
+create table 宿舍信息表
+(
+宿舍号 varchar(5) primary key,
+宿舍楼 char(20) not null,
+宿舍电话 char(10) not null,
+宿舍成员人数 int not null
+
+)
+
+create table 宿舍财产信息表
+(
+财产号 int primary key,
+财产名 char(10) not null
+)
+
+create table 宿舍财产报修信息表
+(
+宿舍号 varchar(5),
+财产号 int,
+损坏原因 varchar(50)not null,
+损坏情况 varchar(50) not null,
+报修时间 datetime not null,
+解决时间 datetime not null,
+备注 varchar(50),
+primary key(宿舍号,财产号),
+foreign key(宿舍号)references 宿舍信息表(宿舍号),
+foreign key(财产号)references 宿舍财产信息表(财产号)
+)
+
+create table 宿舍电费使用情况表
+(
+宿舍号 varchar(5) primary key,
+本月用电量 int not null,
+上月用电量 int not null,
+上上月用电量 int not null,
+上上上月用电量 int not null
+)
+
+create table 访客信息登记表
+(
+宿舍号 varchar(5) primary key,
+来访人姓名 char(20)unique,
+受访人姓名 char(20)unique,
+来访日期 date not null,
+来访时间 time not null,
+与受访人的关系 char(10)not null,
+来访人离开时间 datetime not null
+)
+
+create login teacher with password='123456'
+create user student from login teacher
+
+use 高校学生宿舍信息管理系统
+insert 
+into 学生基本信息表
+values('2001130009','312','2020-9-1','2020-9-1','计算与信息科学学院','131321313','本宿舍楼的学生');
+insert 
+into 学生基本信息表
+values('2001130038','318','2020-9-1','2020-9-1','计算与信息科学学院','165465466','本宿舍楼的学生');
+insert 
+into 学生基本信息表
+values('2001130045','412','2020-9-1','2020-9-1','商学院','31313163','本宿舍楼的学生');
+insert 
+into 学生基本信息表
+values('2001130050','512','2020-9-1','2020-9-1','护理学院','49898798','本宿舍楼的学生');
+insert 
+into 学生基本信息表
+values('2001130004','221','2020-9-1','2020-9-1','应工学院','64646464','本宿舍楼的学生');
+insert 
+into 宿舍信息表
+values('312','A2','8797987978',6);
+insert 
+into 宿舍信息表
+values('318','A1','5464654646',4);
+insert 
+into 宿舍信息表
+values('412','A3','3134135445',6);
+insert 
+into 宿舍信息表
+values('512','A4''4657487997',6);
+insert 
+into 宿舍信息表
+values('221','A8','1321654644',4);
+insert 
+into 宿舍财产信息表
+values(2001,'电灯');
+insert 
+into 宿舍财产信息表
+values(2002,'床铺');
+insert 
+into 宿舍财产信息表
+values(2003,'柜子');
+insert 
+into 宿舍财产信息表
+values(2004,'座椅');
+insert 
+into 宿舍财产信息表
+values(2005,'水龙头');
+
+use 高校学生宿舍信息管理系统
+insert 
+into 宿舍财产报修信息表
+values('312',2001,'电灯接口损坏','很严重','2020-11-21','2020-11-22','请尽快来修复');
+insert 
+into 宿舍财产报修信息表
+values('318',2002,'床铺变形','很严重','2020-9-13','2020-9-14','请快点来修理');
+insert 
+into 宿舍财产报修信息表
+values('412',2003,'柜子坏掉关不上','严重','2020-9-21','2020-9-22','请尽快来修理');
+insert 
+into 宿舍财产报修信息表
+values('512',2004,'座椅不平衡','很糟糕','2020-10-8','2020-10-9','请赶快来修理或换一个');
+insert 
+into 宿舍财产报修信息表
+values('221',2005,'水龙头漏水','很严重','2020-9-16','2020-9-17','请赶快来修复');
+
+use 高校学生宿舍信息管理系统
+insert 
+into 宿舍电费使用情况表
+values('312',100,89,96,89);
+insert 
+into 宿舍电费使用情况表
+values('318',150,120,90,89);
+insert 
+into 宿舍电费使用情况表
+values('412',160,135,100,90);
+insert 
+into 宿舍电费使用情况表
+values('512',120,80,89,95);
+insert 
+into 宿舍电费使用情况表
+values('221',130,90,105,85);
+
+use 高校学生宿舍信息管理系统
+insert 
+into 访客信息登记表
+values('312','张三','李四','2020-9-4','12:36','朋友','13:00');
+insert 
+into 访客信息登记表
+values('318','王五','赵六','2020-9-5','13:36','朋友','14:20');
+insert 
+into 访客信息登记表
+values('412','陈七','陈二','2020-10-4','19:00','朋友','19:30');
+insert 
+into 访客信息登记表
+values('512','张轩','陈一','2020-9-26','16:34','朋友','17:00');
+insert 
+into 访客信息登记表
+values('221','李霞','李玉','2020-9-30','18:36','朋友','19:20');
+
