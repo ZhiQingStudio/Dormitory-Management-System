@@ -1,5 +1,6 @@
-## <center>✨宿舍管理系统DMS</center>
-## <center>🌎️Dormitory Management System</center>
+<h2 align="center">✨宿舍管理系统DMS</h2>
+<h2 align="center">🌎️Dormitory Management System</h2>
+
 <p align="center">
     <a herf="https://github.com/ZhiQingStudio" target="blank">
         <img src="https://github.com/ZhiQingStudio/Dormitory-Management-System/blob/main/Page%20Design/Img/LOGO.jfif" alt="Logo" width="156" height="156">
