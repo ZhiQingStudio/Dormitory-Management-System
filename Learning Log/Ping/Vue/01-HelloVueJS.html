@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-HelloVueJS</title>
+</head>
+
+<body>
+    <!-- 双括号 -->
+    <!-- 交给了Vue实例管理 -->
+    <div id="app">
+        <h1>{{message}}</h1>
+        <h2>{{name}}</h2>
+    </div>
+    <!-- 没交给了Vue实例管理 -->
+    <div>{{message}}</div>
+    
+    <!-- 引用Vue.js -->
+    <script src="../../vue.js"></script>
+    <script>
+        // let(变量)/const(常量)  ES6语法
+        // var有很多缺陷 JS的设计缺陷 没有作用域之类的
+        // 实例化Vue 传参 传对象
+        const app = new Vue({
+            el: '#app', //用于挂载要管理的元素 element
+            data: { //定义数据
+                message: '你好啊，Clarice',
+                name:'Clarice'
+            }
+        })
+        // JS的编程范式是：命令式编程 一步一步编程
+        // Vue的编程范式是：声明式编程
+        // 优点：真正做到隔离
+    </script>
+</body>
+
+</html>

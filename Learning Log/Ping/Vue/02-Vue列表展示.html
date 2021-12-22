@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-Vue列表展示</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <!-- v-for Vue中的属性 遍历movies数组 以item变量输出 动态变化 响应式 -->
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+</div>
+
+<!-- 引入vue.js -->
+<script src="../../vue.js"></script>
+<script>
+    // 实例化Vue 传参(对象)
+    const app = new Vue({
+        el: '#app',
+        data:{
+            // 数组
+            // console中动态添加app.movies.push('华农')
+            movies: ['张三','李四','王刚']
+        }
+    })
+</script>
+
+</body>
+</html>
