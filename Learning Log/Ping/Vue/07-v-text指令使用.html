@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07-v-text指令使用</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>{{message}}，Clarice</h2>
+    <!-- v-text类似Mustache语法 但是操作不方便 会覆盖原有HTML元素内容 -->
+    <h2 v-text="message">Clarice</h2>
+  </div>
+
+  <script src="vue.js"></script>
+  <script>
+    let app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好啊'
+      }
+    })
+  </script>
+</body>
+
+</html>
