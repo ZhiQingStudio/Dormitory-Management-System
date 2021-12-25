@@ -1,0 +1,141 @@
+CREATE TABLE `admins` (
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `buildingId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`buildingId`,`userId`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`buildingId`) REFERENCES `buildings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `admins_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `backrecords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `roomId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roomId` (`roomId`),
+  CONSTRAINT `backrecords_ibfk_1` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `buildings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL COMMENT '楼宇名称',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cleaners` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL COMMENT '保洁员姓名',
+  `phone` varchar(255) DEFAULT NULL COMMENT '保洁员电话',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `buildingId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `buildingId` (`buildingId`),
+  CONSTRAINT `cleaners_ibfk_1` FOREIGN KEY (`buildingId`) REFERENCES `buildings` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cleanrecords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `roomId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roomId` (`roomId`),
+  CONSTRAINT `cleanrecords_ibfk_1` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `evaluates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `score` int(11) NOT NULL COMMENT '评价分数',
+  `note` varchar(255) DEFAULT NULL COMMENT '评价备注',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `roomId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roomId` (`roomId`),
+  CONSTRAINT `evaluates_ibfk_1` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `floors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `layer` int(11) DEFAULT NULL COMMENT '楼层',
+  `buildingId` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `cleanerId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `compositeIndex` (`layer`,`buildingId`),
+  KEY `buildingId` (`buildingId`),
+  KEY `cleanerId` (`cleanerId`),
+  CONSTRAINT `floors_ibfk_1` FOREIGN KEY (`buildingId`) REFERENCES `buildings` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `floors_ibfk_2` FOREIGN KEY (`cleanerId`) REFERENCES `cleaners` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `getuprecords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `roomId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roomId` (`roomId`),
+  CONSTRAINT `getuprecords_ibfk_1` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` int(11) DEFAULT NULL COMMENT '房间号',
+  `buildingId` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '1' COMMENT '宿舍状态，可入住为1，不可入住为2',
+  `peopleNum` int(11) NOT NULL COMMENT '房间最大人数',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `floorId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `compositeIndex` (`number`,`buildingId`),
+  KEY `buildingId` (`buildingId`),
+  KEY `floorId` (`floorId`),
+  CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`buildingId`) REFERENCES `buildings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`floorId`) REFERENCES `floors` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) DEFAULT 'student',
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `checkTime` datetime DEFAULT NULL COMMENT '入住宿舍时间',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  `roomId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`,`account`),
+  KEY `roomId` (`roomId`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
