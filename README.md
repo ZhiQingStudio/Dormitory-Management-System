@@ -1,12 +1,7 @@
 <h2 align="center">✨宿舍管理系统DMS</h2>
 <h2 align="center">🌎️Dormitory Management System</h2>
 
-<p align="center">
-    <a herf="https://github.com/ZhiQingStudio" target="blank">
-        <img src="https://github.com/ZhiQingStudio/Dormitory-Management-System/blob/main/Page%20Design/Img/LOGO.jfif" alt="Logo" width="156" height="156">
-    </a>
-</p>
-
+![](./Backup/Page Design/Img/LOGO.jfif)
 
 ![image](https://github.com/ZhiQingStudio/Dormitory-Management-System/blob/main/Page%20Design/Img/Preview.png)
 
@@ -15,17 +10,89 @@
 宿舍管理系统DMS是为了对高校宿舍工作进行信息化管理，便于进行学生入住、宿舍变更等操作的管理，减少纸质化管理的不便捷性
 </p>
 
+----
 
 ## 🏗️背景目的
-
 
 <p style="text-indent:2em";font-size="18px">
 学生宿舍管理系统对于一个学校来说是必不可少的组成部分。宿舍管理人员手工记录数据对于学生信息量比较庞大，对于需要记录存档的数据比较多的高校来说，人工记录是相当麻烦的。由于数据量庞大会浪费了许多时间，效率也比较低。我们针对这种情况，设计了一套学生宿舍管理系统。学生宿舍管理系统采用的是计算机化管理，系统做的尽量人性化，使用者会感到操作非常方便，管理人员需要做的就是将数据输入到系统的数据库中去。由于数据库存储容量相当大，而且比较稳定，适合较长时间的保存，也不容易丢失。这无疑是为信息存储量比较大的学校提供了一个方便、快捷的操作方式。本系统具有运行速度快、安全性高、稳定性好的优点，并且具备完善的报表生成、修改功能，能够快速的查询学校所需的住宿信息。
 </p>
 
+----
+
+## 🏗️技术分析
+前端：
+
+- Vue 作为基础框架
+- vue-router 控制路由（hash 模式）
+- vuex 状态管理
+- axios 接入数据
+- [Vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 作为基础框架
+
+后台（Nodejs）：
+
+- Koa 作为基础框架
+- koa-router —— 服务端路由控制
+- koa-static —— 读取静态文件
+- koa-jwt —— JWT 登录校验
+- koa-body —— http body 数据处理
+- koa-compress —— Gzip 压缩
+- koa-cors —— CORS 解决跨域问题
+- sequelize —— ORM
+
+数据库：
+
+- MySQL
+
+
+----
+
 ## ✨ 功能
-- [x] 学生基本信息修改
-- [x] 宿舍信息修改
-- [x] 宿舍财产报修
-- [x] 宿舍电费使用情况(自动生成表单)
-- [x] 访客信息登记
+### 学生端
+- [x] 学生账户注册和登录
+- [x] 学生宿舍信息登记
+- [x] 学生基本信息查询(宿舍楼，宿舍号，入住时间，舍友，宿舍评价等)
+- [x] 账户基本信息修改(用户名，手机号，密码)
+- [x] 起床打卡功能
+- [x] 归宿打卡功能
+- [x] 打扫打卡功能
+- [ ] 学生身份认证
+- [ ] 宿舍报修功能
+- [ ] 留言功能
+- [ ] 水电费提交通道
+- [ ] 打卡地理位置定位
+
+----
+
+### 管理员端
+- [x] 管理员基本信息修改
+- [x] 楼层信息查询
+- [x] 宿舍动态查询
+- [x] 检索宿舍基本信息
+- [x] 查询学生详细信息
+- [x] 宿舍评价功能
+- [x] 楼层管理
+- [x] 检索起床记录
+- [x] 检索晚归记录
+- [x] 检索打扫记录
+- [ ] 学生基本信息修改
+- [ ] 留言功能
+
+----
+
+### 超级管理员端
+- [x] 管理员基本信息修改
+- [x] 宿舍概况查询
+- [x] 管理员设置与修改
+- [x] 宿舍楼管理(增加宿舍楼,删除宿舍楼,设置管理员,添加保洁阿姨等)
+- [x] 检索宿舍基本信息
+- [x] 查询学生详细信息
+- [x] 检索起床记录
+- [x] 检索晚归记录
+- [x] 检索打扫记录
+- [ ] 学生基本信息修改
+- [ ] 留言功能
+
+----
+
+## ✨ 功能截图
