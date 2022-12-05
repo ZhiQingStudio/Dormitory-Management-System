@@ -331,7 +331,7 @@ $light_gray: #eee;
   min-height: 100%;
   width: 100%;
   position: fixed;
-  background-image: url('https://raw.githubusercontent.com/ZhiQingStudio/Dormitory-Management-System/dev/Backup/Page%20Design/Img/bg.jpg');
+  background-image: url('https://github.com/Clarice0997/Dormitory-Management-System/blob/main/Backup/Page%20Design/Img/bg.jpg?raw=true');
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
